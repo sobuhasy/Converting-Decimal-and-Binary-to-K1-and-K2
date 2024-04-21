@@ -26,10 +26,22 @@ int K1ToDecimal(int binary) {
     }
 }
 
+int K2ToDecimal(int binary) {
+    int MSB = binary / pow(10, floor(log10(binary)));
+    if (MSB == 0) {
+        return binaryToDecimal(binary);
+    }
+    else {
+        int invertedBinary = pow(10, floor(log10(binary))) - binary;
+        return -binaryToDecimal(invertedBinary + 1);
+    }
+}
+
 int main() {
     int binary;
     cout << "Introduceți un număr binar: ";
     cin >> binary;
     cout << binary << " în binar este " << binaryToDecimal(binary) << " în zecimală.\n";
     cout << binary << " în binar este " << K1ToDecimal(binary) << " în reprezentare K1.\n";
+    cout << binary << " în binar este " << K2ToDecimal(binary) << " în reprezentare K2.\n";
 }
